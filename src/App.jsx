@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import Header from "./Header"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className='bg-background'>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
+    <>
+      <Header />
+      <div className="bg-background text-text min-h-screen p-8">
+        <h1 className="text-4xl font-heading text-primary">
+          Hello world!
+        </h1>
+        <p className="font-body text-subtext">
+          Welcome to the ultimate gaming webshop!
+        </p>
+      </div>
+    </>
   )
 }
 
