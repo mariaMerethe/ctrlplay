@@ -1,4 +1,5 @@
 import Header from "./Header"
+import GameList from "./GameList"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <p className="font-body text-subtext">
           Welcome to the ultimate gaming webshop!
         </p>
+        <GameList />
       </div>
     </>
   )
