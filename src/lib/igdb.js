@@ -4,8 +4,8 @@
 
 export async function getGames() {
     try {
-      // Skicka en POST-förfrågan till vår egen server (localhost:3001)
-      const response = await fetch('http://localhost:3001/api/games', {
+      // Skicka en POST-förfrågan till vår egen server genom Render
+      const response = await fetch('https://ctrlplay-backend.onrender.com/api/games', {
         method: 'POST',
         headers: {
           'Content-Type': 'text/plain', // Viktigt: IGDB:s API kräver text/plain
