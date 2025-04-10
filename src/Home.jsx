@@ -3,7 +3,7 @@ import { getGames } from './lib/igdb'
 import GameCard from './GameCard'
 import GameCardSkeleton from './GameCardSkeleton'
 import FeaturedGame from './FeaturedGame'
-import FeaturedGameSkeleton from './FeaturedGameSkeleton';
+import FeaturedGameSkeleton from './FeaturedGameSkeleton'
 
 function Home() {
     const [games, setGames] = useState([])
@@ -32,7 +32,7 @@ function Home() {
         {loading ? (
             <FeaturedGameSkeleton />
         ) : featuredGame && (
-            <div className="mb-8 border border-glow p-4 rounded">
+            <div className="mb-8 border mx-auto border-gray-700 p-4 rounded">
                 <h2 className="text-2xl font-semibold mb-2">🔥 Featured Game</h2>
                 <FeaturedGame game={featuredGame} />
             </div>
