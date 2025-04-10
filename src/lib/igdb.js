@@ -1,37 +1,29 @@
 // src/lib/igdb.js
 
-const clientId = 'xkkabosjcql2537zv87orgiwm8hz73';
-const clientSecret = 'dxsldmjqmxws6vt1b3cjlxnmeq5psv';
-
-export async function getAccessToken() {
-  const response = await fetch('https://id.twitch.tv/oauth2/token', {
-    method: 'POST',
-    body: new URLSearchParams({
-      client_id: clientId,
-      client_secret: clientSecret,
-      grant_type: 'client_credentials'
-    }),
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  const data = await response.json();
-  return data.access_token;
-}
+// Här skriver vi en funktion som frontend använder för att hämta spel via vår egen proxy-server.
 
 export async function getGames() {
-    const token = await getAccessToken();
+    try {
+      // Skicka en POST-förfrågan till vår egen server (localhost:3001)
+      const response = await fetch('http://localhost:3001/api/games', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain', // Viktigt: IGDB:s API kräver text/plain
+        },
+        // Här skickar vi själva "frågan" till IGDB som ren text (inte som JSON)
+        body: 'fields name,cover.url,summary; limit 10; sort popularity desc;'
+      });
   
-    const response = await fetch('https://api.igdb.com/v4/games', {
-      method: 'POST',
-      headers: {
-        'Client-ID': clientId,
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'text/plain'
-      },
-      body: 'fields name,cover.url,summary; limit 10; sort popularity desc;'
-    });
+      // Om servern svarar med ett fel (t.ex. 400 eller 500), kasta ett fel
+      if (!response.ok) {
+        throw new Error('Failed to fetch games');
+      }
   
-    return await response.json();
+      // Om allt gick bra: returnera datan i JSON-format
+      return await response.json();
+    } catch (error) {
+      console.error('getGames error:', error);
+      return []; // Returnera tom array om det blev fel, så att .map() i GameList inte kraschar
+    }
   }
+  
