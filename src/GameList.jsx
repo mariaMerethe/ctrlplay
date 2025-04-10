@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getGames } from './lib/igdb';
 import GameCard from './GameCard';
+import GameCardSkeleton from './GameCardSkeleton';
 
 function GameList() {
   const [games, setGames] = useState([]);
@@ -26,16 +27,9 @@ function GameList() {
     return (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {Array.from({ length: 10 }).map((_, i) => (
-          <div
-            key={i}
-            className="bg-purple-700 animate-pulse rounded p-4 h-[340px] flex flex-col justify-between"
-          >
-            <div className="bg-purple-400 h-48 rounded mb-4" />
-            <div className="h-4 bg-purple-400 rounded w-3/4 mb-2" />
-            <div className="h-4 bg-purple-400 rounded w-1/2" />
-          </div>
+          <GameCardSkeleton key={i} />
         ))}
-      </div>
+        </div>
     );
   }
 

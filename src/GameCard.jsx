@@ -5,7 +5,7 @@ function GameCard({ game }) {
           <img
             src={game.cover.url.replace('t_thumb', 't_cover_big')}
             alt={game.name}
-            className="w-full h-auto rounded"
+            className="w-full h-64 object-cover rounded"
           />
         )}
         <h2 className="font-heading text-lg mt-2">{game.name}</h2>
