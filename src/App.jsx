@@ -3,6 +3,7 @@ import Header from "./Header"
 import GameList from "./GameList"
 import Home from './Home'
 import GameDetails from './GameDetails'
+import Login from './Login'
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} /> {/*visar Home.jsx som landningssida*/}
           <Route path="/games/:id" element={<GameDetails />} />
-          <Route path="/login" element={<div>Login page (coming soon)</div>} />
+          <Route path="/login" element={<Login />} />
           <Route path="/favorites" element={<div>Favorites (coming soon)</div>} />
           <Route path="/cart" element={<div>Cart (coming soon)</div>} />
           <Route path="/orders" element={<div>Order history (coming soon)</div>} />
